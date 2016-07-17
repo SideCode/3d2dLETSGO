@@ -29,7 +29,8 @@
 				//END: SETUP
 				
 				var geometry = new THREE.PlaneGeometry( 1, 1, 1);
-				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+				var texture = new THREE.TextureLoader().load("textures/test.png")
+				var material = new THREE.MeshBasicMaterial( { map: texture } );
 				var plane = new THREE.Mesh( geometry, material );
 				scene.add( plane );
 				plane.rotation.x = Math.PI / 360 * -120;
