@@ -11,6 +11,9 @@
 	<body>
 		<script src="js/three.js"></script>
 		<script>
+				//To Do:
+				//	Add animated texture
+
 				//START: SETUP
 				var scene = new THREE.Scene()
 				var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight,
@@ -28,13 +31,22 @@
 				}
 				//END: SETUP
 				
-				var geometry = new THREE.PlaneGeometry( 1, 1, 1);
 				var texture = new THREE.TextureLoader().load("textures/test.png")
 				var material = new THREE.MeshBasicMaterial( { map: texture } );
-				var plane = new THREE.Mesh( geometry, material );
-				scene.add( plane );
-				plane.rotation.x = Math.PI / 360 * -120;
+				
+				// var plane = new THREE.Mesh( new THREE.PlaneGeometry( 1, 1, 1),
+				// 							material );
 
+				// scene.add( plane );
+				// plane.rotation.x = Math.PI / 360 * -120;
+
+				var ball = new THREE.Mesh( new THREE.SphereGeometry( 9, 3, 3 ), 
+											material );
+				scene.add( ball )
+				ball.position.y = 8.5;
+				ball.rotation.y = -.001;
+				ball.rotation.x = -.0001;
+				//ball.position.z = -50;
 				// var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 				// var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 				// var cube = new THREE.Mesh( geometry, material );
@@ -43,9 +55,18 @@
 				camera.position.z = 5;
 
 				function render() {
+
+					ball.position.y -= .0003;
+					ball.position.z -= .001;
+					if(ball.position.z < -9){
+						ball.rotation.y *= 1.001;
+					}
+					if(ball.position.z < -18){
+						ball.rotation.x *= 1.001;
+					}
+
 					requestAnimationFrame( render );
 					renderer.render( scene, camera );
-
 				}
 				render();
 		</script>
