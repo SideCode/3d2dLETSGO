@@ -16,7 +16,7 @@
 				//	Add animated texture
 
 				//START: SETUP
-				var scene = new THREE.Scene()
+				var scene = new THREE.Scene();
 				var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight,
 															0.1, 1000 );
 				var renderer = new THREE.WebGLRenderer();
@@ -44,7 +44,7 @@
 				}
 				//END: SETUP
 
-				var texture = new THREE.TextureLoader().load("textures/test.png")
+				var texture = new THREE.TextureLoader().load("textures/test.png");
 				var material = new THREE.MeshBasicMaterial( { map: texture } );
 				
 				// var plane = new THREE.Mesh( new THREE.PlaneGeometry( 1, 1, 1),
@@ -55,7 +55,7 @@
 
 				var ball = new THREE.Mesh( new THREE.SphereGeometry( 9, 3, 3 ),              
 											material );
-				scene.add( ball )
+				scene.add( ball );
 				ball.position.y = 8.5;
 				ball.rotation.y1 = -.0001;
 				ball.rotation.y2 = 0;
@@ -70,10 +70,8 @@
 				window.addEventListener('devicemotion', function(event){
 					ball.rotation.y2 += event.rotationRate.beta/100;
 				})
-				
 
 				function render() {
-
 					ball.position.y -= .0003;
 					ball.position.z -= .001;
 					ball.rotation.y1 *= 1.001;
