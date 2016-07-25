@@ -5,11 +5,27 @@
 		<meta name="viewport" content="width=device-width, inital-scale=1, user-scalable=no">
 		<title>My first Three.js app</title>
 		<style>
-			body { margin: 0; background-color: black;}
-			canvas { width: 100%; height: 100%; display: block;}
+			body { margin: 0; background-color: black; }
+			canvas { width: 100%; height: 100%; display: block}
+			div { position: fixed; }
+			div#newsletter-thing { z-index: 1; top:50%; left: calc((50% - 150px/2)); width: 300px;}
+			input{width:100%;}
 		</style>
 	</head>
 	<body>
+		<div id="newsletter-thing">
+			<div>
+				<input type="email" id="email"/>
+			</div>
+			<div>
+				<input type="submit" id="submit"/>
+			</div>
+		</div>
+		
+		<div id="canvashub">
+		
+		</div>
+
 		<script src="node_modules/three/build/three.js"></script>
 		<script>
 				//To Do:
@@ -23,8 +39,10 @@
 				renderer.domElement.id = 'canvas';
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
-				document.body.appendChild( renderer.domElement );
+
+				document.getElementById('canvashub').appendChild( renderer.domElement );
 				var canvas = document.getElementById('canvas');
+				canvas.setAttribute('z-index', -1);
 
 				canvas.addEventListener( 'click', function(event) {
 					if (!document.webkitIsFullScreen) {
